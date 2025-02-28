@@ -14,7 +14,13 @@
             <a href="{% url 'home' %}">🏠 Home</a>
             <a href="{% url 'car_list' %}">🚗 View My Cars</a>
             <a href="{% url 'car_create' %}">➕ Add Car</a>
-            <a href="{% url 'logout' %}">🚪 Logout</a>
+            
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="border:none; background:none; cursor:pointer; color:blue;">
+                    🚪 Logout
+                </button>
+            </form>
         {% else %}
             <a href="{% url 'login' %}">🔑 Login</a>
             <a href="{% url 'signup' %}">🆕 Sign Up</a>
