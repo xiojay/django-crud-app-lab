@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Car Collector{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">🏠 Home</a>
+            <a href="{% url 'car_list' %}">🚗 View My Cars</a>
+            <a href="{% url 'car_create' %}">➕ Add Car</a>
+            <a href="{% url 'logout' %}">🚪 Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">🔑 Login</a>
+            <a href="{% url 'signup' %}">🆕 Sign Up</a>
+        {% endif %}
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

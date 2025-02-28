@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Mods</title>
+</head>
+<body>
+    <h1>Modifications for {{ car.year }} {{ car.make }} {{ car.model }}</h1>
+
+    <a href="{% url 'mod_create' car.id %}">➕ Add a New Mod</a>
+    <a href="{% url 'car_list' %}">⬅️ Back to Cars</a>
+
+    <ul>
+        {% for mod in car.modifications.all %}
+            <li>
+                {{ mod.name }} 
+                <a href="{% url 'mod_delete' mod.id %}">❌ Remove</a>
+            </li>
+        {% empty %}
+            <li>No modifications added yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

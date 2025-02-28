@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}My Car Collection{% endblock %}
+{% block content %}
+    <h1>My Cars</h1>
+    <div class="car-container">
+        {% for car in cars %}
+        <div class="car-card">
+            <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+            <p>Tags: 
+                {% for tag in car.tags.all %}
+                    {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <a href="{% url 'car_update' car.id %}">✏️ Edit</a>
+            <a href="{% url 'car_delete' car.id %}">🗑️ Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
